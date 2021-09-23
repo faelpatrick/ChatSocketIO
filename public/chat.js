@@ -1,6 +1,6 @@
 //Create rom and io
 const room = window.location.pathname.replace(/\//g, '')
-const socket = io(`http://192.168.100.88:3000/${room}`);
+const socket = io(`http://inf-02:3000/${room}`);
 
 //create a null user
 let user = null;
