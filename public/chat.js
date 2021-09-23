@@ -1,6 +1,8 @@
+//Create rom and io
 const room = window.location.pathname.replace(/\//g, '')
 const socket = io(`http://localhost:3000/${room}`);
 
+//create a null user
 let user = null;
 
 socket.on('update_messages', (messages) => {

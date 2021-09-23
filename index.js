@@ -1,35 +1,36 @@
+//requiriments
 const express = require('express');
 const app = express();
 const path = require('path');
 const socketIO = require('socket.io');
 
-app.use('/grupo1', express.static(path.join(__dirname, 'public')))
-app.use('/grupo2', express.static(path.join(__dirname, 'public')))
+//Routes
+app.use('/group1', express.static(path.join(__dirname, 'public')))
+app.use('/group2', express.static(path.join(__dirname, 'public')))
 
 const server = app.listen(3000, () => {
     console.log('Running')
 })
 
-const messages = { grupo1: [], grupo2: [] };
-
+//create io socket
 const io = socketIO(server)
 
-const grupo1 = io.of('/grupo1').on('connection', (socket) => {
-    console.log('new connection');
-    socket.emit('update_messages', messages.grupo1)
+//Groups
+const messages = { group1: [], group2: [] };
 
-    socket.on('new_message', (data) => {
-        messages.grupo1.push(data);
-        grupo1.emit('update_messages', messages.grupo1)
+const group1 = createGroup(messages,'group1');
+const group2 = createGroup(messages,'group2');
+
+//function for creat the groups 1 and 2
+function createGroup(messages, dir) {
+
+    const group = io.of(dir).on('connection', (socket) => {
+        console.log('new connection');
+        socket.emit('update_messages', messages[dir])
+
+        socket.on('new_message', (data) => {
+            messages[dir].push(data);
+            group.emit('update_messages', messages[dir])
+        })
     })
-})
-
-const grupo2 = io.of('/grupo2').on('connection', (socket) => {
-    console.log('new connection');
-    socket.emit('update_messages', messages.grupo2)
-
-    socket.on('new_message', (data) => {
-        messages.grupo2.push(data);
-        grupo2.emit('update_messages', messages.grupo2)
-    })
-})
+}
