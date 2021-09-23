@@ -1,6 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url('../images/bg.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+#container {
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    height: 30px;
+    border-radius: 5px;
+    font-size: 1.4em;
+}
+
+#user_form {
+    margin-bottom: 20px;
+}
+
+#message_form {
+    margin-top: 20px;
+}
+
+button {
+    height: 38px;
+    width: 80px;
+    font-size: 1.2em;
+    border-radius: 4px;
+}
+
 #messages {
     background-color: whitesmoke;
     width: 500px;
     height: 500px;
     overflow: scroll;
+}
+
+@media only screen and (max-width: 1000px) {
+    #container {
+        height: 90vh;
+    }
+    div#messages {
+        color: green;
+        width: 100%;
+    }
+    input {
+        width: 65%;
+        margin-left: 5%;
+    }
 }

@@ -1,6 +1,6 @@
 //Create rom and io
 const room = window.location.pathname.replace(/\//g, '')
-const socket = io(`http://localhost:3000/${room}`);
+const socket = io(`http://192.168.100.88:3000/${room}`);
 
 //create a null user
 let user = null;
@@ -14,7 +14,7 @@ function updateMessagesOnScreen(messages) {
 
     let list_messages = '<ul>'
     messages.forEach(message => {
-        list_messages += `<li>${message.user}: ${message.msg}</li>`
+        list_messages += `<li><strong>${message.user}:</strong> ${message.msg}</li>`
     })
     list_messages += '</ul>';
 

@@ -2,13 +2,17 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const cors = require('cors');
 const socketIO = require('socket.io');
+const PORT = 3000;
+
 
 //Routes
+app.use(cors())
 app.use('/group1', express.static(path.join(__dirname, 'public')))
 app.use('/group2', express.static(path.join(__dirname, 'public')))
 
-const server = app.listen(3000, () => {
+const server = app.listen(PORT, () => {
     console.log('Running')
 })
 
