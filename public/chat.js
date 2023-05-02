@@ -1,6 +1,6 @@
 //Create rom and io
 const room = window.location.pathname.replace(/\//g, '')
-const socket = io(`http://inf-02:3000/${room}`);
+const socket = io(`https://chat-socket-io-phi.vercel.app/${room}`);
 
 //create a null user
 let user = null;
